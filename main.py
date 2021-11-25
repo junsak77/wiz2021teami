@@ -8,22 +8,24 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    FollowEvent, MessageEvent, TextMessage, TextSendMessage,
 )
 
 app = Flask(__name__)
 
-#環境変数取得
+# 環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+# ブラウザでherokuにアクセスした場合の処理
 @app.route("/")
 def hello_world():
     return "hello world!"
 
+# LINEからメッセージを受け取った場合の処理
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -35,17 +37,27 @@ def callback():
 
     # handle webhook body
     try:
+        # 署名を検証し、問題なければhandleに定義されている関数を呼び出す
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
 
     return 'OK'
 
+# フォローイベントの場合の処理
+@handler.add(FollowEvent)
+def handle_follow(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text='初めまして')
+    )
+
+# メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text=event.message.text)) # 受け取った文字列をそのまま返す
 
 if __name__ == "__main__":
 #    app.run()
