@@ -65,8 +65,8 @@ def handle_message(event):
     if content in ['カテゴリ選択']:
         carousel_columns = [
             CarouselColumn(
-                text='',
-                title='カテゴリを選択してください',
+                text='カテゴリを選択してください',
+                title='カテゴリ選択',
                 actions=[
                     PostbackTemplateAction(
                         label='医療・保健・福祉関連',
@@ -79,6 +79,42 @@ def handle_message(event):
                     PostbackTemplateAction(
                         label='生活関連',
                         data='生活関連'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                text='カテゴリを選択してください',
+                title='カテゴリ選択',
+                actions=[
+                    PostbackTemplateAction(
+                        label='環境関連',
+                        data='環境関連'
+                    ),
+                    PostbackTemplateAction(
+                        label='産業・労働・就業関連',
+                        data='産業・労働・就業関連'
+                    ),
+                    PostbackTemplateAction(
+                        label='警察・犯罪関連',
+                        data='警察・犯罪関連'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                text='カテゴリを選択してください',
+                title='カテゴリ選択',
+                actions=[
+                    PostbackTemplateAction(
+                        label='パスポート・外国人関連',
+                        data='パスポート・外国人関連'
+                    ),
+                    PostbackTemplateAction(
+                        label='教育関連',
+                        data='教育関連'
+                    ),
+                    PostbackTemplateAction(
+                        label='県政相談',
+                        data='県政相談'
                     )
                 ]
             )
