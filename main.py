@@ -8,7 +8,9 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    FollowEvent, MessageEvent, TextMessage, TextSendMessage,
+    CarouselColumn, CarouselTemplate, 
+    FollowEvent, MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage,
+    PostbackTemplateAction
 )
 
 app = Flask(__name__)
@@ -59,9 +61,37 @@ def handle_follow(event):
 # メッセージイベントの場合の処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text)) # 受け取った文字列をそのまま返す
+    content = event.message.text # メッセージの内容を取得する
+    if content in ['カテゴリ選択']:
+        carousel_columns = [
+            CarouselColumn(
+                text='',
+                title='カテゴリを選択してください',
+                actions=[
+                    PostbackTemplateAction(
+                        label='医療・保健・福祉関連',
+                        data='医療・保健・福祉関連'
+                    ),
+                    PostbackTemplateAction(
+                        label='震災・復旧・復興関連',
+                        data='震災・復旧・復興関連'
+                    ),
+                    PostbackTemplateAction(
+                        label='生活関連',
+                        data='生活関連'
+                    )
+                ]
+            )
+        ]
+        message_template = CarouselTemplate(columns=carousel_columns)
+        line_bot_api.push_message(
+            event.reply_token,
+            TemplateSendMessage(alt_text='carousel template', template=message_template)
+        )
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=content)) # 受け取った文字列をそのまま返す
 
 if __name__ == "__main__":
 #    app.run()
