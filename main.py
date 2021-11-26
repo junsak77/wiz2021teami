@@ -51,7 +51,7 @@ def handle_follow(event):
 
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text="{profile.display_name}さん、はじめまして！\n" +
+        TextSendMessage(text=profile.display_name + "さん、はじめまして！\n" +
         "友だち追加ありがとうございます。ナビふくくん(仮)です。\n" +
         "まずは窓口の分野を選択するか、キーワードを入力してください。")
     )
