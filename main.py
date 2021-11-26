@@ -47,9 +47,13 @@ def callback():
 # フォローイベントの場合の処理
 @handler.add(FollowEvent)
 def handle_follow(event):
+    profile = line_bot_api.get_profile(event.source.user_id)
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='初めまして')
+        TextSendMessage(text="{profile.display_name}さん、はじめまして！\n" +
+        "友だち追加ありがとうございます。ナビふくくん(仮)です。\n" +
+        "まずは窓口の分野を選択するか、キーワードを入力してください。")
     )
 
 # メッセージイベントの場合の処理
