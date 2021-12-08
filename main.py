@@ -71,7 +71,7 @@ def handle_message(event):
                     PostbackTemplateAction(
                         label='医療・保健・福祉関連',
                         data='callback',
-                        Text='医療・保健・福祉関連'
+                        text='医療・保健・福祉関連'
                         
                     ),
                     PostbackTemplateAction(
