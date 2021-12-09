@@ -135,7 +135,7 @@ def handle_message(event):
             TemplateSendMessage(alt_text='carousel template', template=message_template)
         )
         if content in ['医療・保健・福祉関連']:
-            carousel_columns = (
+            carousel_columns = [
                 CarouselColumn(
                     text = '分野を選択してください',
                     title = 'カテゴリ選択',
@@ -158,7 +158,9 @@ def handle_message(event):
                     ]
                 ),
                 CarouselColumn(
-                    PostbackTemplateAction(
+                    text = '分野を選択してください',
+                    title = 'カテゴリ選択',
+                    action =[
                         PostbackTemplateAction(
                             label = '精神',
                             date = 'callback',
@@ -174,9 +176,9 @@ def handle_message(event):
                             date = 'callback',
                             text = '健康・生活'
                         )
-                    )
+                    ]
                 )
-            )
+            ]
 
     else:
         line_bot_api.reply_message(
