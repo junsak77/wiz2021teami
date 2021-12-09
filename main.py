@@ -71,17 +71,18 @@ def handle_message(event):
                     PostbackTemplateAction(
                         label='医療・保健・福祉関連',
                         data='callback',
-                        displayText='医療・保健・福祉関連'
+                        text='医療・保健・福祉関連'
+                        
                     ),
                     PostbackTemplateAction(
                         label='震災・復旧・復興関連',
                         data='callback',
-                        displayText='震災・復旧・復興関連'
+                        text='震災・復旧・復興関連'
                     ),
                     PostbackTemplateAction(
                         label='生活関連',
                         data='callback',
-                        displayText='生活関連'
+                        text='生活関連'
                     )
                 ]
             ),
@@ -92,17 +93,17 @@ def handle_message(event):
                     PostbackTemplateAction(
                         label='環境関連',
                         data='callback',
-                        displayText='環境関連'
+                        text='環境関連'
                     ),
                     PostbackTemplateAction(
                         label='産業・労働・就業関連',
                         data='callback',
-                        displayText='産業・労働・就業関連'
+                        text='産業・労働・就業関連'
                     ),
                     PostbackTemplateAction(
                         label='警察・犯罪関連',
                         data='callback',
-                        displayText='警察・犯罪関連'
+                        text='警察・犯罪関連'
                     )
                 ]
             ),
@@ -113,17 +114,17 @@ def handle_message(event):
                     PostbackTemplateAction(
                         label='パスポート・外国人関連',
                         data='callback',
-                        displayText='パスポート・外国人関連'
+                        text='パスポート・外国人関連'
                     ),
                     PostbackTemplateAction(
                         label='教育関連',
                         data='callback',
-                        displayText='教育関連'
+                        text='教育関連'
                     ),
                     PostbackTemplateAction(
                         label='県政相談',
                         data='callback',
-                        displayText='県政相談'
+                        text='県政相談'
                     )
                 ]
             )
