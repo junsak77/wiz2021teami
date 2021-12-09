@@ -354,14 +354,8 @@ def handle_message(event):
                         label = 'いじめ・子ども相談',
                         data = 'callback',
                         text = 'いじめ・子ども相談'
-                    )
-                ]
-            ),
-            CarouselColumn(
-                text = '分野を選択してください',
-                title = '分野選択',
-                actions = [
-                    PostbackTemplateAction(
+                    ),
+                     PostbackTemplateAction(
                         label = '犯罪関連',
                         data = 'callback',
                         text = '犯罪関連'
