@@ -255,14 +255,14 @@ def handle_message(event):
                 title = '分野選択',
                 actions = [
                     PostbackTemplateAction(
+                        label = '情報関連',
+                        data = 'callback',
+                        text = '情報関連'
+                    ),
+                    PostbackTemplateAction(
                         label = '食品・安全',
                         data = 'callback',
                         text = '食品・安全'
-                    ),
-                    PostbackTemplateAction(
-                        label = 'その他 (NPO法人)',
-                        data = 'callback',
-                        text = 'その他 (NPO法人)'
                     )
                 ]
             )
