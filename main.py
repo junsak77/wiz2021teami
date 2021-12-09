@@ -134,51 +134,51 @@ def handle_message(event):
             event.reply_token,
             TemplateSendMessage(alt_text='carousel template', template=message_template)
         )
-        if content in ['医療・保健・福祉関連']:
-            carousel_columns = [
-                CarouselColumn(
-                    text = '分野を選択してください',
-                    title = 'カテゴリ選択',
-                    action = [
-                        PostbackTemplateAction(
-                            label = '保険・福祉',
-                            date = 'callback',
-                            text = '保険・福祉'
-                        ),
-                        PostbackTemplateAction(
-                            label = '救急・医療',
-                            date = 'callback',
-                            text = '救急・医療'
-                        ),
-                        PostbackTemplateAction(
-                            label = '障がい者',
-                            date = 'callback',
-                            text = '障がい者'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    text = '分野を選択してください',
-                    title = 'カテゴリ選択',
-                    action =[
-                        PostbackTemplateAction(
-                            label = '精神',
-                            date = 'callback',
-                            text = '精神'
-                        ),
-                        PostbackTemplateAction(
-                            label = '女性',
-                            date = 'callback',
-                            text = '女性'
-                        ),
-                        PostbackTemplateAction(
-                            label = '健康・生活',
-                            date = 'callback',
-                            text = '健康・生活'
-                        )
-                    ]
-                )
-            ]
+    elif content in ['医療・保健・福祉関連']:
+        carousel_columns = [
+            CarouselColumn(
+                text = '分野を選択してください',
+                title = 'カテゴリ選択',
+                action = [
+                    PostbackTemplateAction(
+                        label = '保険・福祉',
+                        date = 'callback',
+                        text = '保険・福祉'
+                    ),
+                    PostbackTemplateAction(
+                        label = '救急・医療',
+                        date = 'callback',
+                        text = '救急・医療'
+                    ),
+                    PostbackTemplateAction(
+                        label = '障がい者',
+                        date = 'callback',
+                        text = '障がい者'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                text = '分野を選択してください',
+                title = 'カテゴリ選択',
+                action =[
+                    PostbackTemplateAction(
+                        label = '精神',
+                        date = 'callback',
+                        text = '精神'
+                    ),
+                    PostbackTemplateAction(
+                        label = '女性',
+                        date = 'callback',
+                        text = '女性'
+                    ),
+                    PostbackTemplateAction(
+                        label = '健康・生活',
+                        date = 'callback',
+                        text = '健康・生活'
+                    )
+                ]
+            )
+        ]
 
     else:
         line_bot_api.reply_message(
