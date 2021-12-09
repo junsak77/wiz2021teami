@@ -288,13 +288,7 @@ def handle_message(event):
                         label = '公害・廃棄物',
                         data = 'callback',
                         text = '公害・廃棄物'
-                    )
-                ]
-            ),
-            CarouselColumn(
-                text = '分野を選択してください',
-                title = '分野選択',
-                actions = [
+                    ),
                     PostbackTemplateAction(
                         label = '環境保全活動',
                         data = 'callback',
