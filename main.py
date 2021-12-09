@@ -142,17 +142,17 @@ def handle_message(event):
                 actions = [
                     PostbackTemplateAction(
                         label = '保険・福祉',
-                        date = 'callback',
+                        data = 'callback',
                         text = '保険・福祉'
                     ),
                     PostbackTemplateAction(
                         label = '救急・医療',
-                        date = 'callback',
+                        data = 'callback',
                         text = '救急・医療'
                     ),
                     PostbackTemplateAction(
                         label = '障がい者',
-                        date = 'callback',
+                        data = 'callback',
                         text = '障がい者'
                     )
                 ]
@@ -163,17 +163,17 @@ def handle_message(event):
                 actions =[
                     PostbackTemplateAction(
                         label = '精神',
-                        date = 'callback',
+                        data = 'callback',
                         text = '精神'
                     ),
                     PostbackTemplateAction(
                         label = '女性',
-                        date = 'callback',
+                        data = 'callback',
                         text = '女性'
                     ),
                     PostbackTemplateAction(
                         label = '健康・生活',
-                        date = 'callback',
+                        data = 'callback',
                         text = '健康・生活'
                     )
                 ]
