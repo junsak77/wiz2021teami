@@ -138,8 +138,8 @@ def handle_message(event):
         carousel_columns = [
             CarouselColumn(
                 text = '分野を選択してください',
-                title = 'カテゴリ選択',
-                action = [
+                title = '分野選択',
+                actions = [
                     PostbackTemplateAction(
                         label = '保険・福祉',
                         date = 'callback',
@@ -159,8 +159,8 @@ def handle_message(event):
             ),
             CarouselColumn(
                 text = '分野を選択してください',
-                title = 'カテゴリ選択',
-                action =[
+                title = '分野選択',
+                actions =[
                     PostbackTemplateAction(
                         label = '精神',
                         date = 'callback',
