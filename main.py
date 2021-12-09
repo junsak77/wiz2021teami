@@ -179,6 +179,11 @@ def handle_message(event):
                 ]
             )
         ]
+        message_template = CarouselTemplate(columns=carousel_columns)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TemplateSendMessage(alt_text='carousel template', template=message_template)
+        )
 
     else:
         line_bot_api.reply_message(
