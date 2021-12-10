@@ -424,6 +424,86 @@ def handle_message(event):
             TemplateSendMessage(alt_text='carousel template', template=message_template)
         )
 
+    elif content in ['産業']:
+        carousel_columns = [
+            CarouselColumn(
+                text = '分野を選択してください',
+                title = '分野選択',
+                actions = [
+                    PostbackTemplateAction(
+                        label = '農林水産業',
+                        data = 'callback',
+                        text = '農林水産業'
+                    ),
+                    PostbackTemplateAction(
+                        label = 'テクノロジー',
+                        data = 'callback',
+                        text = 'テクノロジー'
+                    ),
+                    
+                ]
+            )
+        ]
+        message_template = CarouselTemplate(columns=carousel_columns)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TemplateSendMessage(alt_text='carousel template', template=message_template)
+        )
+
+    elif content in ['障がい者関連']:
+        carousel_columns = [
+            CarouselColumn(
+                text = '分野を選択してください',
+                title = '分野選択',
+                actions = [
+                    PostbackTemplateAction(
+                        label = '視覚障がい',
+                        data = 'callback',
+                        text = '視覚障がい'
+                    ),
+                    PostbackTemplateAction(
+                        label = '聴覚障がい',
+                        data = 'callback',
+                        text = '聴覚障がい'
+                    ),
+                    PostbackTemplateAction(
+                        label = '肢体不自由',
+                        data = 'callback',
+                        text = '肢体不自由'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                text = '分野を選択してください',
+                title = '分野選択',
+                actions = [
+                    PostbackTemplateAction(
+                        label = '病弱障がい',
+                        data = 'callback',
+                        text = '病弱障がい'
+                    ),
+                    PostbackTemplateAction(
+                        label = '知的障がい',
+                        data = 'callback',
+                        text = '知的障がい'
+                    ),
+                    PostbackTemplateAction(
+                        label = 'LD・ADHD等',
+                        data = 'callback',
+                        text = 'LD・ADHD等'
+                    )
+                ]
+            )
+        ]
+        message_template = CarouselTemplate(columns=carousel_columns)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TemplateSendMessage(alt_text='carousel template', template=message_template)
+        )
+
+        
+
+
     else:
         line_bot_api.reply_message(
             event.reply_token,
