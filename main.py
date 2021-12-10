@@ -450,7 +450,7 @@ def handle_message(event):
             TemplateSendMessage(alt_text='carousel template', template=message_template)
         )
 
-    elif content in ['障がい者関連']:
+    elif content in ['障がい児関連']:
         carousel_columns = [
             CarouselColumn(
                 text = '分野を選択してください',
