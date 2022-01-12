@@ -55,34 +55,34 @@ def database():
         with conn.cursor() as curs:
             curs.execute("SELECT * FROM window_list ORDER BY Id ASC")
             db = curs.fetchall()
-            # result = "<table>\
-            #  <tr>\
-            #   <th>Id</th>\
-            #   <th>Category</th>\
-            #   <th>Number</th>\
-            #   <th>Soudan_name</th>\
-            #   <th>Soudan_content</th>\
-            #   <th>Window_name</th>\
-            #   <th>tel</th>\
-            #   <th>Business_hours</th>\
-            #   <th>Subcategory</th>\
-            #   <th>Timestamp</th>\
-            #  </tr>"
-            # for row in db: 
-            #     result += "<tr>\
-            #         <td>" + row[0] + "</td>\
-            #         <td>" + row[1] + "</td>\
-            #         <td>" + row[2] + "</td>\
-            #         <td>" + row[3] + "</td>\
-            #         <td>" + row[4] + "</td>\
-            #         <td>" + row[5] + "</td>\
-            #         <td>" + row[6] + "</td>\
-            #         <td>" + row[7] + "</td>\
-            #         <td>" + row[8] + "</td>\
-            #         <td>" + row[9] + "</td>\
-            #         </tr>"
-            # result += "</table>"
-    return db
+            result = "<table>\
+             <tr>\
+              <th>Id</th>\
+              <th>Category</th>\
+              <th>Number</th>\
+              <th>Soudan_name</th>\
+              <th>Soudan_content</th>\
+              <th>Window_name</th>\
+              <th>tel</th>\
+              <th>Business_hours</th>\
+              <th>Subcategory</th>\
+              <th>Timestamp</th>\
+             </tr>"
+            for row in db: 
+                result += "<tr>\
+                    <td>" + str(row[0]) + "</td>\
+                    <td>" + str(row[1]) + "</td>\
+                    <td>" + str(row[2]) + "</td>\
+                    <td>" + str(row[3]) + "</td>\
+                    <td>" + str(row[4]) + "</td>\
+                    <td>" + str(row[5]) + "</td>\
+                    <td>" + str(row[6]) + "</td>\
+                    <td>" + str(row[7]) + "</td>\
+                    <td>" + str(row[8]) + "</td>\
+                    <td>" + str(row[9]) + "</td>\
+                    </tr>"
+            result += "</table>"
+    return result
 
 # フォローイベントの場合の処理
 @handler.add(FollowEvent)
