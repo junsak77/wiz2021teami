@@ -55,7 +55,7 @@ def database():
         with conn.cursor() as curs:
             curs.execute("SELECT * FROM window_list ORDER BY Id ASC")
             db = curs.fetchall()
-            result = row[0]
+            result = ""
             # result = "<table>\
             #  <tr>\
             #   <th>Id</th>\
@@ -69,7 +69,8 @@ def database():
             #   <th>Subcategory</th>\
             #   <th>Timestamp</th>\
             #  </tr>"
-            # for row in db: 
+            for row in db: 
+                result = row[0]
             #     result += "<tr>\
             #         <td>" + row[0] + "</td>\
             #         <td>" + row[1] + "</td>\
