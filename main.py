@@ -1,5 +1,6 @@
 from flask import Flask, request, abort
 import os
+import psycopg2
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -18,6 +19,7 @@ app = Flask(__name__)
 # 環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
@@ -45,6 +47,14 @@ def callback():
         abort(400)
 
     return 'OK'
+
+# データベースの表の出力
+@app.route("/database")
+def database():
+    with psycopg2.connect(DATABASE_URL) as conn:
+        with conn.cursor() as curs:
+            curs.execute("SELECT * FROM window_list ORDER BY Id ASC")
+            curs.fetchall()
 
 # フォローイベントの場合の処理
 @handler.add(FollowEvent)
