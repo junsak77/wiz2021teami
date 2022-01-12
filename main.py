@@ -69,7 +69,7 @@ def database():
               <th>Timestamp</th>\
              </tr>"
             for row in db: 
-                result += "<tr>\
+                result = result + "<tr>\
                     <td>" + row[0] + "</td>\
                     <td>" + row[1] + "</td>\
                     <td>" + row[2] + "</td>\
@@ -81,7 +81,7 @@ def database():
                     <td>" + row[8] + "</td>\
                     <td>" + row[9] + "</td>\
                     </tr>"
-            result += "</table>"
+            result = result + "</table>"
 
     return result
 
