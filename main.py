@@ -70,16 +70,16 @@ def database():
              </tr>"
             for row in db: 
                 result += "<tr>\
-                    <td>" + row['Id'] + "</td>\
-                    <td>" + row['Category'] + "</td>\
-                    <td>" + row['Number'] + "</td>\
-                    <td>" + row['Soudan_name'] + "</td>\
-                    <td>" + row['Soudan_content'] + "</td>\
-                    <td>" + row['Window_name'] + "</td>\
-                    <td>" + row['Tel'] + "</td>\
-                    <td>" + row['Business_hours'] + "</td>\
-                    <td>" + row['Subcategory'] + "</td>\
-                    <td>" + row['Timestamp'] + "</td>\
+                    <td>" + row[0] + "</td>\
+                    <td>" + row[1] + "</td>\
+                    <td>" + row[2] + "</td>\
+                    <td>" + row[3] + "</td>\
+                    <td>" + row[4] + "</td>\
+                    <td>" + row[5] + "</td>\
+                    <td>" + row[6] + "</td>\
+                    <td>" + row[7] + "</td>\
+                    <td>" + row[8] + "</td>\
+                    <td>" + row[9] + "</td>\
                     </tr>"
             result += "</table>"
 
