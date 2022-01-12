@@ -55,7 +55,6 @@ def database():
         with conn.cursor() as curs:
             curs.execute("SELECT * FROM window_list ORDER BY Id ASC")
             db = curs.fetchall()
-            result = ""
             # result = "<table>\
             #  <tr>\
             #   <th>Id</th>\
@@ -69,8 +68,7 @@ def database():
             #   <th>Subcategory</th>\
             #   <th>Timestamp</th>\
             #  </tr>"
-            for row in db: 
-                result = row[0]
+            # for row in db: 
             #     result += "<tr>\
             #         <td>" + row[0] + "</td>\
             #         <td>" + row[1] + "</td>\
@@ -84,8 +82,7 @@ def database():
             #         <td>" + row[9] + "</td>\
             #         </tr>"
             # result += "</table>"
-
-    return result
+    return db
 
 # フォローイベントの場合の処理
 @handler.add(FollowEvent)
