@@ -55,6 +55,7 @@ def database():
         with conn.cursor() as curs:
             curs.execute("SELECT * FROM window_list ORDER BY Id ASC")
             curs.fetchall()
+    return "database page"
 
 # フォローイベントの場合の処理
 @handler.add(FollowEvent)
