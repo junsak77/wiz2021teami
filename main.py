@@ -54,8 +54,36 @@ def database():
     with psycopg2.connect(DATABASE_URL) as conn:
         with conn.cursor() as curs:
             curs.execute("SELECT * FROM window_list ORDER BY Id ASC")
-            results = curs.fetchall()
-    return results
+            db = curs.fetchall()
+            result = "<table>\
+             <tr>\
+              <th>Id</th>\
+              <th>Category</th>\
+              <th>Number</th>\
+              <th>Soudan_name</th>\
+              <th>Soudan_content</th>\
+              <th>Window_name</th>\
+              <th>tel</th>\
+              <th>Business_hours</th>\
+              <th>Subcategory</th>\
+              <th>Timestamp</th>\
+             </tr>"
+            for row in db: 
+                result += "<tr>\
+                    <td>" + row['Id'] + "</td>\
+                    <td>" + row['Category'] + "</td>\
+                    <td>" + row['Number'] + "</td>\
+                    <td>" + row['Soudan_name'] + "</td>\
+                    <td>" + row['Soudan_content'] + "</td>\
+                    <td>" + row['Window_name'] + "</td>\
+                    <td>" + row['Tel'] + "</td>\
+                    <td>" + row['Business_hours'] + "</td>\
+                    <td>" + row['Subcategory'] + "</td>\
+                    <td>" + row['Timestamp'] + "</td>\
+                    </tr>"
+            result += "</table>"
+
+    return result
 
 # フォローイベントの場合の処理
 @handler.add(FollowEvent)
