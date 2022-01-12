@@ -54,8 +54,8 @@ def database():
     with psycopg2.connect(DATABASE_URL) as conn:
         with conn.cursor() as curs:
             curs.execute("SELECT * FROM window_list ORDER BY Id ASC")
-            curs.fetchall()
-    return "database page"
+            results = curs.fetchall()
+    return results
 
 # フォローイベントの場合の処理
 @handler.add(FollowEvent)
