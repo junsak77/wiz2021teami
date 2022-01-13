@@ -24,6 +24,14 @@ DATABASE_URL = os.environ.get('DATABASE_URL')
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+# 窓口リストを表示する関数
+# Pythonでは呼び出す行より上に記述しないとエラーになる
+def window_list(db):
+    result = "窓口一覧\n"
+    for row in db: 
+        result += "・" + row[3] + "\n"
+    return result
+
 # ブラウザでherokuにアクセスした場合の処理
 @app.route("/")
 def hello_world():
@@ -561,9 +569,3 @@ if __name__ == "__main__":
 #    app.run()
     port = int(os.getenv("PORT"))
     app.run(host="0.0.0.0", port=port)
-
-def window_list(db):
-    result = "窓口一覧\n"
-    for row in db: 
-        result += "・" + row[3] + "\n"
-    return result
