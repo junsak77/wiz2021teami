@@ -615,16 +615,46 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 26 ORDER BY Id ASC")
                 db = curs.fetchall()
 
+    elif content in ['原発']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 31 ORDER BY Id ASC")
+                db = curs.fetchall()
+
         result = window_list(db)
         
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=result))
 
-    elif content in ['原発']:
+    elif content in ['生活']:
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as curs:
-                curs.execute("SELECT * FROM window_list WHERE subcategory = 31 ORDER BY Id ASC")
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 32 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['企業・経営']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 33 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['復興支援']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 34 ORDER BY Id ASC")
                 db = curs.fetchall()
 
         result = window_list(db)
@@ -645,8 +675,294 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=result))
 
+    elif content in ['生活・人間関係']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 42 ORDER BY Id ASC")
+                db = curs.fetchall()
 
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
 
+    elif content in ['食品・安全']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 43 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['その他']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 44 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['環境問題']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 51 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['公害・廃棄物']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 52 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['環境保全活動']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 53 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['労働環境']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 71 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['経営']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 72 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['農林水産業']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 731 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['テクノロジー']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 732 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['安全相談']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 81 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['交通安全']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 82 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['いじめ・子ども相談']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 83 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['犯罪関連']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 84 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['パスポート']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 91 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['外国人向け相談窓口']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 101 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['教育相談']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 111 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['視覚障がい']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 1121 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['聴覚障がい']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 1122 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['肢体不自由']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 1123 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['病弱障がい']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 1124 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['知的障がい']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 1125 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['LD・ADHD等']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 1126 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['調査・文化財']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 113 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+                                                                 
     else:
         line_bot_api.reply_message(
             event.reply_token,
