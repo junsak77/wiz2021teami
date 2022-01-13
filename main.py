@@ -10,7 +10,7 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     CarouselColumn, CarouselTemplate, 
-    FollowEvent, MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage,
+    FollowEvent, MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, ButtonsTemplate,
     PostbackTemplateAction
 )
 
@@ -539,8 +539,18 @@ def handle_message(event):
             TemplateSendMessage(alt_text='carousel template', template=message_template)
         )
 
-        
+    # 以下サブカテゴリ
+    elif content in ['保険・福祉']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 21 ORDER BY Id ASC")
+                db = curs.fetchall()
 
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
 
     else:
         line_bot_api.reply_message(
@@ -551,3 +561,9 @@ if __name__ == "__main__":
 #    app.run()
     port = int(os.getenv("PORT"))
     app.run(host="0.0.0.0", port=port)
+
+def window_list(db):
+    result = "窓口一覧\n"
+    for row in db: 
+        result += "・" + row[3] + "\n"
+    return result
