@@ -30,6 +30,7 @@ def window_list(db):
     result = "窓口一覧\n"
     for row in db: 
         result += "・" + row[3] + "\n"
+    result += "・見つからない場合はこちら"
     return result
 
 # ブラウザでherokuにアクセスした場合の処理
