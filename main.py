@@ -614,6 +614,12 @@ def handle_message(event):
             with conn.cursor() as curs:
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 26 ORDER BY Id ASC")
                 db = curs.fetchall()
+        
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
 
     elif content in ['原発']:
         with psycopg2.connect(DATABASE_URL) as conn:
