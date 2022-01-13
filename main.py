@@ -561,6 +561,67 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=result))
 
+    elif content in ['救急・医療']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 22 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['障がい者']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 23 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['精神']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 24 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+    
+    elif content in ['女性']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 25 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+    elif content in ['健康・生活']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE subcategory = 26 ORDER BY Id ASC")
+                db = curs.fetchall()
+
+        result = window_list(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
+
     else:
         line_bot_api.reply_message(
             event.reply_token,
