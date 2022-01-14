@@ -88,7 +88,7 @@ def window_list(db):
                             text="窓口" + str(dbcol[1][0])
                         ),
                         PostbackTemplateAction(
-                            label='',
+                            label='あ',
                             data='callback'
                         )
                     ]
@@ -106,11 +106,11 @@ def window_list(db):
                             text="窓口" + str(dbcol[0][0])
                         ),
                         PostbackTemplateAction(
-                            label='',
+                            label='あ',
                             data='callback'
                         ),
                         PostbackTemplateAction(
-                            label='',
+                            label='あ',
                             data='callback'
                         )
                     ]
