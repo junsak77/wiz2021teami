@@ -26,12 +26,50 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 # 窓口リストを表示する関数
 # Pythonでは呼び出す行より上に記述しないとエラーになる
-def window_list(db):
+def window_list_kari(db):
     result = "窓口一覧\n"
     for row in db: 
         result += "・" + row[3] + "\n"
     result += "・見つからない場合はこちら"
     return result
+
+def split_list(l, n):
+    """
+    リストをサブリストに分割する
+    :param l: リスト
+    :param n: サブリストの要素数
+    :return: 
+    """
+    for idx in range(0, len(l), n):
+        yield l[idx:idx + n]
+
+def window_list(db):
+    db_column = list(split_list(db, 3))
+    carousel_columns = []
+    for dbcol in db_column:
+        carousel_columns.append(
+            CarouselColumn(
+                text='お探しの窓口を選択してください'
+                title='窓口選択'
+                actions=[
+                    PostbackTemplateAction(
+                        label=dbcol[0][3],
+                        data='callback',
+                        text="窓口" + str(dbcol[0][0])
+                    ),
+                    PostbackTemplateAction(
+                        label=dbcol[1][3],
+                        data='callback',
+                        text="窓口" + str(dbcol[1][0])
+                    ),
+                    PostbackTemplateAction(
+                        label=dbcol[2][3],
+                        data='callback',
+                        text="窓口" + str(dbcol[2][0])
+                    )
+                ]
+            )
+        )
 
 # ブラウザでherokuにアクセスした場合の処理
 @app.route("/")
@@ -557,9 +595,11 @@ def handle_message(event):
 
         result = window_list(db)
         
+        message_template = CarouselTemplate(columns=result)
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            TemplateSendMessage(alt_text='carousel template', template=message_template)
+        )
 
     elif content in ['救急・医療']:
         with psycopg2.connect(DATABASE_URL) as conn:
