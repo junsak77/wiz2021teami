@@ -49,8 +49,8 @@ def window_list(db):
     for dbcol in db_column:
         carousel_columns.append(
             CarouselColumn(
-                text='お探しの窓口を選択してください'
-                title='窓口選択'
+                text='お探しの窓口を選択してください',
+                title='窓口選択',
                 actions=[
                     PostbackTemplateAction(
                         label=dbcol[0][3],
