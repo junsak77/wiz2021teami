@@ -47,29 +47,75 @@ def window_list(db):
     db_column = list(split_list(db, 3))
     carousel_columns = []
     for dbcol in db_column:
-        carousel_columns.append(
-            CarouselColumn(
-                text='お探しの窓口を選択してください',
-                title='窓口選択',
-                actions=[
-                    PostbackTemplateAction(
-                        label=dbcol[0][3],
-                        data='callback',
-                        text="窓口" + str(dbcol[0][0])
-                    ),
-                    PostbackTemplateAction(
-                        label=dbcol[1][3],
-                        data='callback',
-                        text="窓口" + str(dbcol[1][0])
-                    ),
-                    PostbackTemplateAction(
-                        label=dbcol[2][3],
-                        data='callback',
-                        text="窓口" + str(dbcol[2][0])
-                    )
-                ]
+        if len(dbcol) == 3:
+            carousel_columns.append(
+                CarouselColumn(
+                    text='お探しの窓口を選択してください',
+                    title='窓口選択',
+                    actions=[
+                        PostbackTemplateAction(
+                            label=dbcol[0][3],
+                            data='callback',
+                            text="窓口" + str(dbcol[0][0])
+                        ),
+                        PostbackTemplateAction(
+                            label=dbcol[1][3],
+                            data='callback',
+                            text="窓口" + str(dbcol[1][0])
+                        ),
+                        PostbackTemplateAction(
+                            label=dbcol[2][3],
+                            ata='callback',
+                            text="窓口" + str(dbcol[2][0])
+                        )
+                    ]
+                )
             )
-        )
+        elif len(dbcol) == 2:
+            carousel_columns.append(
+                CarouselColumn(
+                    text='お探しの窓口を選択してください',
+                    title='窓口選択',
+                    actions=[
+                        PostbackTemplateAction(
+                            label=dbcol[0][3],
+                            data='callback',
+                            text="窓口" + str(dbcol[0][0])
+                        ),
+                        PostbackTemplateAction(
+                            label=dbcol[1][3],
+                            data='callback',
+                            text="窓口" + str(dbcol[1][0])
+                        ),
+                        PostbackTemplateAction(
+                            label='',
+                            data='callback'
+                        )
+                    ]
+                )
+            )
+        elif len(dbcol) == 1:
+            carousel_columns.append(
+                CarouselColumn(
+                    text='お探しの窓口を選択してください',
+                    title='窓口選択',
+                    actions=[
+                        PostbackTemplateAction(
+                            label=dbcol[0][3],
+                            data='callback',
+                            text="窓口" + str(dbcol[0][0])
+                        ),
+                        PostbackTemplateAction(
+                            label='',
+                            data='callback'
+                        ),
+                        PostbackTemplateAction(
+                            label='',
+                            data='callback'
+                        )
+                    ]
+                )
+            )
 
 # ブラウザでherokuにアクセスした場合の処理
 @app.route("/")
