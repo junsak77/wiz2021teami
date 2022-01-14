@@ -26,12 +26,12 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 # 窓口リストを表示する関数
 # Pythonでは呼び出す行より上に記述しないとエラーになる
-def window_list_kari(db):
-    result = "窓口一覧\n"
-    for row in db: 
-        result += "・" + row[3] + "\n"
-    result += "・見つからない場合はこちら"
-    return result
+# def window_list(db):
+    # result = "窓口一覧\n"
+    # for row in db: 
+    #     result += "・" + row[3] + "\n"
+    # result += "・見つからない場合はこちら"
+    # return result
 
 def split_list(l, n):
     """
@@ -44,6 +44,16 @@ def split_list(l, n):
         yield l[idx:idx + n]
 
 def window_list(db):
+    db_column = list(split_list(db, 3))
+    result = "窓口一覧\n"
+    for dbcol in db_column:
+        for row in dbcol:
+            result += "・" + row[3] + "\n"
+        result += "----------"
+    result += "・見つからない場合はこちら"
+    return result
+
+def window_list_carousel(db):
     db_column = list(split_list(db, 3))
     carousel_columns = []
     for dbcol in db_column:
