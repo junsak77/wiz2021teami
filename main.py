@@ -703,37 +703,37 @@ def handle_message(event):
                         height = 'sm',
                         actions = [ 
                             PostbackTemplateAction(
-                                label = db[0][3],
+                                label = str(db[0][3]),
                                 data = 'callback',
                                 text = '窓口' + str(db[0][0])
                             ),
                             PostbackTemplateAction(
-                                label = db[0][3],
+                                label = str(db[1][3]),
                                 data = 'callback',
                                 text = '窓口' + str(db[1][0])
                             ),
                             PostbackTemplateAction(
-                                label = db[0][3],
+                                label = str(db[2][3]),
                                 data = 'callback',
                                 text = '窓口' + str(db[2][0])
                             ),
                             PostbackTemplateAction(
-                                label = db[0][3],
+                                label = str(db[3][3]),
                                 data = 'callback',
                                 text = '窓口' + str(db[3][0])
                             ),
                             PostbackTemplateAction(
-                                label = db[0][3],
+                                label = str(db[4][3]),
                                 data = 'callback',
                                 text = '窓口' + str(db[4][0])
                             ),
                             PostbackTemplateAction(
-                                label = db[0][3],
+                                label = str(db[5][3]),
                                 data = 'callback',
                                 text = '窓口' + str(db[5][0])
                             ),
                             PostbackTemplateAction(
-                                label = db[0][3],
+                                label = str(db[6][3]),
                                 data = 'callback',
                                 text = '窓口' + str(db[6][0])
                             )
