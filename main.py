@@ -10,6 +10,7 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     CarouselColumn, CarouselTemplate, 
+    BubbleContainer, ImageComponent, TextComponent, ButtonComponent, URIAction, MessageAction,
     FollowEvent, MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, FlexSendMessage,
     PostbackTemplateAction
 )
