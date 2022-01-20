@@ -91,28 +91,26 @@ def window_list_flex(db):
                 )
             )
         contents_carousel.append(
-            CarouselContainer(
-                contents = [
-                    BubbleContainer(
-                        header = BoxComponent(
-                            layout = 'vertical',
-                            contents = [ 
-                                TextComponent(
-                                    text = '窓口を選択してください',
-                                    weight = 'bold',
-                                    color = '#333333',
-                                    size = 'xl'
-                                )
-                            ]
-                        ),
-                        body = BoxComponent(
-                            layout = 'vertical',
-                            contents = contents_button
+            BubbleContainer(
+                header = BoxComponent(
+                    layout = 'vertical',
+                    contents = [ 
+                        TextComponent(
+                            text = '窓口を選択してください',
+                            weight = 'bold',
+                            color = '#333333',
+                            size = 'xl'
                         )
-                    )
-                ]
+                    ]
+                ),
+                body = BoxComponent(
+                    layout = 'vertical',
+                    contents = contents_button
+                )
             )
         )
+        
+    return CarouselContainer(contents=contents_carousel)
 
 # 窓口の情報を出力
 def window_info(db):
