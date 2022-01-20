@@ -63,103 +63,18 @@ def window_list(db):
         result += "----------\n"
     result += "・見つからない場合はこちら"
     return result
-    # result = BubbleContainer(
-    #     header=BoxComponent(
-    #         layout='vertical',
-    #         contents=[
-    #             TextComponent(
-    #                 text='窓口を選択してください',
-    #                 weight='bold',
-    #                 color='#aaaaaa',
-    #                 size='xl'
-    #             )
-    #         ]
-    #     ),
-    #     body=BoxComponent(
-    #         layout='vertical',
-    #         contents=[]
-    #     )
-    # for dbcol in db_column:
-    #     for row in dbcol:
-    #         result
-    # )
 
-def window_list_carousel(db):
-    db_column = list(split_list(db, 3))
-    carousel_columns = []
-    for dbcol in db_column:
-        if len(dbcol) == 3:
-            carousel_columns.append(
-                CarouselColumn(
-                    text='お探しの窓口を選択してください',
-                    title='窓口選択',
-                    actions=[
-                        PostbackTemplateAction(
-                            label=dbcol[0][3],
-                            data='callback',
-                            text="窓口" + str(dbcol[0][0])
-                        ),
-                        PostbackTemplateAction(
-                            label=dbcol[1][3],
-                            data='callback',
-                            text="窓口" + str(dbcol[1][0])
-                        ),
-                        PostbackTemplateAction(
-                            label=dbcol[2][3],
-                            ata='callback',
-                            text="窓口" + str(dbcol[2][0])
-                        )
-                    ]
-                )
-            )
-        elif len(dbcol) == 2:
-            carousel_columns.append(
-                CarouselColumn(
-                    text='お探しの窓口を選択してください',
-                    title='窓口選択',
-                    actions=[
-                        PostbackTemplateAction(
-                            label=dbcol[0][3],
-                            data='callback',
-                            text="窓口" + str(dbcol[0][0])
-                        ),
-                        PostbackTemplateAction(
-                            label=dbcol[1][3],
-                            data='callback',
-                            text="窓口" + str(dbcol[1][0])
-                        ),
-                        PostbackTemplateAction(
-                            label='.',
-                            data='callback',
-                            text='.'
-                        )
-                    ]
-                )
-            )
-        elif len(dbcol) == 1:
-            carousel_columns.append(
-                CarouselColumn(
-                    text='お探しの窓口を選択してください',
-                    title='窓口選択',
-                    actions=[
-                        PostbackTemplateAction(
-                            label=dbcol[0][3],
-                            data='callback',
-                            text="窓口" + str(dbcol[0][0])
-                        ),
-                        PostbackTemplateAction(
-                            label='.',
-                            data='callback',
-                            text='.'
-                        ),
-                        PostbackTemplateAction(
-                            label='.',
-                            data='callback',
-                            text='.'
-                        )
-                    ]
-                )
-            )
+def window_list_flex(db):
+    db.append(
+        (1,1,1,
+        '見つからない場合はこちら',
+        '県の総合的な相談窓口',
+        '県庁県政相談コーナー',
+        '0120-899-721\nkenseisoudan@pref.fukushima.lg.jp',
+        '月～金\n9:00～12:00\n13:00～16:00\n(祝日、年末年始を除く)',
+        0,'2021-12-10 02:37:02.388856')
+        )
+    db_column = list(split_list(db, 7))
 
 # ブラウザでherokuにアクセスした場合の処理
 @app.route("/")
@@ -706,112 +621,65 @@ def handle_message(event):
                                 data = 'callback',
                                 text = '窓口' + str(db[0][0])
                         )
+                    ),
+                    ButtonComponent(
+                        style = 'link',
+                        height = 'sm',
+                        action = PostbackAction(
+                                label = str(db[1][3]),
+                                data = 'callback',
+                                text = '窓口' + str(db[1][0])
+                        )
+                    ),
+                    ButtonComponent(
+                        style = 'link',
+                        height = 'sm',
+                        action = PostbackAction(
+                                label = str(db[2][3]),
+                                data = 'callback',
+                                text = '窓口' + str(db[2][0])
+                        )
+                    ),
+                    ButtonComponent(
+                        style = 'link',
+                        height = 'sm',
+                        action = PostbackAction(
+                                label = str(db[3][3]),
+                                data = 'callback',
+                                text = '窓口' + str(db[3][0])
+                        )
+                    ),
+                    ButtonComponent(
+                        style = 'link',
+                        height = 'sm',
+                        action = PostbackAction(
+                                label = str(db[4][3]),
+                                data = 'callback',
+                                text = '窓口' + str(db[4][0])
+                        )
+                    ),
+                    ButtonComponent(
+                        style = 'link',
+                        height = 'sm',
+                        action = PostbackAction(
+                                label = str(db[5][3]),
+                                data = 'callback',
+                                text = '窓口' + str(db[5][0])
+                        )
+                    ),
+                    ButtonComponent(
+                        style = 'link',
+                        height = 'sm',
+                        action = PostbackAction(
+                                label = str(db[6][3]),
+                                data = 'callback',
+                                text = '窓口' + str(db[6][0])
+                        )
                     )
                 ]
             )
         )
 
-        # payload = {
-        #     "type": "bubble",
-        #     "header": {
-        #         "type": "box",
-        #         "layout": "vertical",
-        #         "contents": [
-        #         {
-        #             "type": "text",
-        #             "text": "窓口を選択してください",
-        #             "weight": "bold",
-        #             "size": "xl"
-        #         }
-        #         ]
-        #     }
-        #     ,
-        #     "body": {
-        #         "type": "box",
-        #         "layout": "vertical",
-        #         "spacing": "sm",
-        #         "contents": [
-        #         {
-        #             "type": "button",
-        #             "style": "link",
-        #             "height": "sm",
-        #             "action": {
-        #                 "type": "message",
-        #                 "label": str(db[0][3]),
-        #                 "text": "窓口" + str(db[0][0])
-        #             }
-        #         },
-        #         {
-        #             "type": "button",
-        #             "style": "link",
-        #             "height": "sm",
-        #             "action": {
-        #                 "type": "message",
-        #                 "label": str(db[1][3]),
-        #                 "text": "窓口" + str(db[1][0])
-        #             }
-        #         },
-        #         {
-        #             "type": "button",
-        #             "style": "link",
-        #             "height": "sm",
-        #             "action": {
-        #                 "type": "message",
-        #                 "label": str(db[2][3]),
-        #                 "text": "窓口" + str(db[2][0])
-        #             }
-        #         },
-        #         {
-        #             "type": "button",
-        #             "style": "link",
-        #             "height": "sm",
-        #             "action": {
-        #                 "type": "message",
-        #                 "label": str(db[3][3]),
-        #                 "text": "窓口" + str(db[3][0])
-        #             }
-        #         },
-        #         {
-        #             "type": "button",
-        #             "style": "link",
-        #             "height": "sm",
-        #             "action": {
-        #                 "type": "message",
-        #                 "label": str(db[4][3]),
-        #                 "text": "窓口" + str(db[4][0])
-        #             }
-        #         },
-        #         {
-        #             "type": "button",
-        #             "style": "link",
-        #             "height": "sm",
-        #             "action": {
-        #                 "type": "message",
-        #                 "label": str(db[5][3]),
-        #                 "text": "窓口" + str(db[5][0])
-        #             }
-        #         },
-        #         {
-        #             "type": "button",
-        #             "style": "link",
-        #             "height": "sm",
-        #             "action": {
-        #                 "type": "message",
-        #                 "label": str(db[6][3]),
-        #                 "text": "窓口" + str(db[6][0])
-        #             }
-        #         },
-        #         {
-        #             "type": "spacer",
-        #             "size": "sm"
-        #         }
-        #         ],
-        #         "flex": 0
-        #     }
-        # }
-        
-        
-        # message_obj = FlexSendMessage.new_from_json_dict(payload)
         line_bot_api.reply_message(
             event.reply_token,
             FlexSendMessage(alt_text='flex template', contents=result)
