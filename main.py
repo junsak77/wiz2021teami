@@ -55,33 +55,33 @@ def window_list(db):
         )
     db_column = list(split_list(db, 7))
     
-    # result = "窓口一覧\n"
-    # for dbcol in db_column:
-    #     for row in dbcol:
-    #         result += "・" + row[3] + "\n"
-    #     result += "----------\n"
-    # result += "・見つからない場合はこちら"
-    # return result
-    result = BubbleContainer(
-        header=BoxComponent(
-            layout='vertical',
-            contents=[
-                TextComponent(
-                    text='窓口を選択してください',
-                    weight='bold',
-                    color='#aaaaaa',
-                    size='xl'
-                )
-            ]
-        ),
-        body=BoxComponent(
-            layout='vertical',
-            contents=[]
-        )
+    result = "窓口一覧\n"
     for dbcol in db_column:
         for row in dbcol:
-            result
-    )
+            result += "・" + row[3] + "\n"
+        result += "----------\n"
+    result += "・見つからない場合はこちら"
+    return result
+    # result = BubbleContainer(
+    #     header=BoxComponent(
+    #         layout='vertical',
+    #         contents=[
+    #             TextComponent(
+    #                 text='窓口を選択してください',
+    #                 weight='bold',
+    #                 color='#aaaaaa',
+    #                 size='xl'
+    #             )
+    #         ]
+    #     ),
+    #     body=BoxComponent(
+    #         layout='vertical',
+    #         contents=[]
+    #     )
+    # for dbcol in db_column:
+    #     for row in dbcol:
+    #         result
+    # )
 
 def window_list_carousel(db):
     db_column = list(split_list(db, 3))
