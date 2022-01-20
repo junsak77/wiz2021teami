@@ -10,7 +10,7 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     CarouselColumn, CarouselTemplate, 
-    BubbleContainer, ImageComponent, TextComponent, ButtonComponent, URIAction, MessageAction,
+    BubbleContainer, BoxComponent, TextComponent, ButtonComponent, MessageAction,
     FollowEvent, MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, FlexSendMessage,
     PostbackTemplateAction
 )
@@ -684,13 +684,64 @@ def handle_message(event):
                 db = curs.fetchall()
 
         result = BubbleContainer(
-            direction='ltr',
-            hero=ImageComponent(
-                url='https://mag.sendenkaigi.com/brain/201403/images/116_01.jpg',
-                action=URIAction(uri='https://ja.wikipedia.org/wiki/笑い男%20(攻殻機動隊)')
+            header = BoxComponent(
+                layout = 'vertical',
+                contents = [ 
+                    TextComponent(
+                        text = '窓口を選択してください',
+                        weight = 'bold',
+                        color = '#aaaaaa',
+                        size = 'xl'
+                    )
+                ]
+            ),
+            body = BoxComponent(
+                layout = 'vertical',
+                contents = [ 
+                    ButtonComponent(
+                        style = 'link',
+                        height = 'sm',
+                        actions = [ 
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[0][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[1][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[2][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[3][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[4][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[5][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[6][0])
+                            )
+                        ]
+                    )
+                ]
             )
         )
-        #     header = BoxComponent(
         #         layout = 'vertical',
         #         contents = [
         #             TextComponent(
@@ -847,6 +898,7 @@ def handle_message(event):
         #         "flex": 0
         #     }
         # }
+        
         
         # message_obj = FlexSendMessage.new_from_json_dict(payload)
         line_bot_api.reply_message(
