@@ -595,7 +595,7 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 21 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        carousel_columns = [
+        result = [
             BubbleContainer(
                 header = BoxComponent(
                     layout = 'vertical',
@@ -706,14 +706,9 @@ def handle_message(event):
             )
         ]
 
-        # line_bot_api.reply_message(
-        #     event.reply_token,
-        #     FlexSendMessage(alt_text='flex template', contents=result)
-        # )
-        message_template = CarouselTemplate(columns=carousel_columns)
         line_bot_api.reply_message(
             event.reply_token,
-            TemplateSendMessage(alt_text='carousel template', template=message_template)
+            FlexSendMessage(alt_text='flex template', contents=result)
         )
 
     elif content in ['救急・医療']:
