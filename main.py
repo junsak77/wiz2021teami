@@ -97,6 +97,18 @@ def callback():
 
     return 'OK'
 
+def window_info(db):
+    db_column = list(split_list(db, 3,5,7,8))
+    for dbcol in db_column:
+        for row in dbcol:
+            result = "お探しの窓口はこちらですか？\n"
+            result = "\n"
+            result = row[3] + "\n"
+            result = row[5] + "\n"
+            result = row[6] + "\n"
+            result = row[7] 
+    return result
+
 # データベースの表の出力
 @app.route("/database")
 def database():
@@ -1265,6 +1277,19 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=result))
+
+    elif content in ['県政相談']:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE Id = 1")
+                db = curs.fetchall()
+
+        result = window_info(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
                                                                  
     else:
         line_bot_api.reply_message(
