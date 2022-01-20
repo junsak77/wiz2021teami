@@ -10,7 +10,7 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     CarouselColumn, CarouselTemplate, 
-    FollowEvent, MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, ButtonsTemplate,
+    FollowEvent, MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, FlexSendMessage,
     PostbackTemplateAction
 )
 
@@ -44,14 +44,44 @@ def split_list(l, n):
         yield l[idx:idx + n]
 
 def window_list(db):
-    db_column = list(split_list(db, 3))
-    result = "窓口一覧\n"
+    db.append(
+        (1,1,1,
+        '見つからない場合はこちら',
+        '県の総合的な相談窓口',
+        '県庁県政相談コーナー',
+        '0120-899-721\nkenseisoudan@pref.fukushima.lg.jp',
+        '月～金\n9:00～12:00\n13:00～16:00\n(祝日、年末年始を除く)',
+        0,'2021-12-10 02:37:02.388856')
+        )
+    db_column = list(split_list(db, 7))
+    
+    # result = "窓口一覧\n"
+    # for dbcol in db_column:
+    #     for row in dbcol:
+    #         result += "・" + row[3] + "\n"
+    #     result += "----------\n"
+    # result += "・見つからない場合はこちら"
+    # return result
+    result = BubbleContainer(
+        header=BoxComponent(
+            layout='vertical',
+            contents=[
+                TextComponent(
+                    text='窓口を選択してください',
+                    weight='bold',
+                    color='#aaaaaa',
+                    size='xl'
+                )
+            ]
+        ),
+        body=BoxComponent(
+            layout='vertical',
+            contents=[]
+        )
     for dbcol in db_column:
         for row in dbcol:
-            result += "・" + row[3] + "\n"
-        result += "----------"
-    result += "・見つからない場合はこちら"
-    return result
+            result
+    )
 
 def window_list_carousel(db):
     db_column = list(split_list(db, 3))
@@ -652,7 +682,65 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 21 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
+        result = BubbleContainer(
+            header = BoxComponent(
+                layout = 'vertical',
+                contents = [
+                    TextComponent(
+                        text = '窓口を選択してください',
+                        weight = 'bold',
+                        color = '#aaaaaa',
+                        size = 'xl'
+                    )
+                ]
+            ),
+            body = BoxComponent(
+                layout = 'vertical',
+                contents = [
+                    ButtonComponent(
+                        style = 'link'
+                        height = 'sm'
+                        actions = [
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[0][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[1][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[2][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[3][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[4][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[5][0])
+                            ),
+                            PostbackTemplateAction(
+                                label = db[0][3],
+                                data = 'callback',
+                                text = '窓口' + str(db[6][0])
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
         
         message_template = CarouselTemplate(columns=result)
         line_bot_api.reply_message(
