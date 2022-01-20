@@ -682,7 +682,13 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 21 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        # result = BubbleContainer(
+        result = BubbleContainer(
+            direction='ltr',
+            hero=ImageComponent(
+                url='https://mag.sendenkaigi.com/brain/201403/images/116_01.jpg',
+                action=URIAction(uri='https://ja.wikipedia.org/wiki/笑い男 (攻殻機動隊)')
+            )
+        )
         #     header = BoxComponent(
         #         layout = 'vertical',
         #         contents = [
@@ -742,109 +748,109 @@ def handle_message(event):
         #     )
         # )
 
-        payload = {
-            "type": "bubble",
-            "header": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                {
-                    "type": "text",
-                    "text": "窓口を選択してください",
-                    "weight": "bold",
-                    "size": "xl"
-                }
-                ]
-            }
-            ,
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action": {
-                        "type": "message",
-                        "label": str(db[0][3]),
-                        "text": "窓口" + str(db[0][0])
-                    }
-                },
-                {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action": {
-                        "type": "message",
-                        "label": str(db[1][3]),
-                        "text": "窓口" + str(db[1][0])
-                    }
-                },
-                {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action": {
-                        "type": "message",
-                        "label": str(db[2][3]),
-                        "text": "窓口" + str(db[2][0])
-                    }
-                },
-                {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action": {
-                        "type": "message",
-                        "label": str(db[3][3]),
-                        "text": "窓口" + str(db[3][0])
-                    }
-                },
-                {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action": {
-                        "type": "message",
-                        "label": str(db[4][3]),
-                        "text": "窓口" + str(db[4][0])
-                    }
-                },
-                {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action": {
-                        "type": "message",
-                        "label": str(db[5][3]),
-                        "text": "窓口" + str(db[5][0])
-                    }
-                },
-                {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action": {
-                        "type": "message",
-                        "label": str(db[6][3]),
-                        "text": "窓口" + str(db[6][0])
-                    }
-                },
-                {
-                    "type": "spacer",
-                    "size": "sm"
-                }
-                ],
-                "flex": 0
-            }
-        }
+        # payload = {
+        #     "type": "bubble",
+        #     "header": {
+        #         "type": "box",
+        #         "layout": "vertical",
+        #         "contents": [
+        #         {
+        #             "type": "text",
+        #             "text": "窓口を選択してください",
+        #             "weight": "bold",
+        #             "size": "xl"
+        #         }
+        #         ]
+        #     }
+        #     ,
+        #     "body": {
+        #         "type": "box",
+        #         "layout": "vertical",
+        #         "spacing": "sm",
+        #         "contents": [
+        #         {
+        #             "type": "button",
+        #             "style": "link",
+        #             "height": "sm",
+        #             "action": {
+        #                 "type": "message",
+        #                 "label": str(db[0][3]),
+        #                 "text": "窓口" + str(db[0][0])
+        #             }
+        #         },
+        #         {
+        #             "type": "button",
+        #             "style": "link",
+        #             "height": "sm",
+        #             "action": {
+        #                 "type": "message",
+        #                 "label": str(db[1][3]),
+        #                 "text": "窓口" + str(db[1][0])
+        #             }
+        #         },
+        #         {
+        #             "type": "button",
+        #             "style": "link",
+        #             "height": "sm",
+        #             "action": {
+        #                 "type": "message",
+        #                 "label": str(db[2][3]),
+        #                 "text": "窓口" + str(db[2][0])
+        #             }
+        #         },
+        #         {
+        #             "type": "button",
+        #             "style": "link",
+        #             "height": "sm",
+        #             "action": {
+        #                 "type": "message",
+        #                 "label": str(db[3][3]),
+        #                 "text": "窓口" + str(db[3][0])
+        #             }
+        #         },
+        #         {
+        #             "type": "button",
+        #             "style": "link",
+        #             "height": "sm",
+        #             "action": {
+        #                 "type": "message",
+        #                 "label": str(db[4][3]),
+        #                 "text": "窓口" + str(db[4][0])
+        #             }
+        #         },
+        #         {
+        #             "type": "button",
+        #             "style": "link",
+        #             "height": "sm",
+        #             "action": {
+        #                 "type": "message",
+        #                 "label": str(db[5][3]),
+        #                 "text": "窓口" + str(db[5][0])
+        #             }
+        #         },
+        #         {
+        #             "type": "button",
+        #             "style": "link",
+        #             "height": "sm",
+        #             "action": {
+        #                 "type": "message",
+        #                 "label": str(db[6][3]),
+        #                 "text": "窓口" + str(db[6][0])
+        #             }
+        #         },
+        #         {
+        #             "type": "spacer",
+        #             "size": "sm"
+        #         }
+        #         ],
+        #         "flex": 0
+        #     }
+        # }
         
-        message_obj = FlexSendMessage.new_from_json_dict(payload)
+        # message_obj = FlexSendMessage.new_from_json_dict(payload)
         line_bot_api.reply_message(
             event.reply_token,
-            TemplateSendMessage(alt_text='flex template', message=message_obj)
+            FlexSendMessage(alt_text='flex template', contents=result)
         )
 
     elif content in ['救急・医療']:
