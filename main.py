@@ -12,7 +12,7 @@ from linebot.models import (
     CarouselColumn, CarouselTemplate, 
     BubbleContainer, BoxComponent, TextComponent, ButtonComponent, MessageAction,
     FollowEvent, MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, FlexSendMessage,
-    PostbackTemplateAction
+    PostbackAction, PostbackTemplateAction
 )
 
 app = Flask(__name__)
@@ -701,104 +701,15 @@ def handle_message(event):
                     ButtonComponent(
                         style = 'link',
                         height = 'sm',
-                        actions = [ 
-                            PostbackTemplateAction(
+                        action = PostbackAction(
                                 label = str(db[0][3]),
                                 data = 'callback',
                                 text = '窓口' + str(db[0][0])
-                            ),
-                            PostbackTemplateAction(
-                                label = str(db[1][3]),
-                                data = 'callback',
-                                text = '窓口' + str(db[1][0])
-                            ),
-                            PostbackTemplateAction(
-                                label = str(db[2][3]),
-                                data = 'callback',
-                                text = '窓口' + str(db[2][0])
-                            ),
-                            PostbackTemplateAction(
-                                label = str(db[3][3]),
-                                data = 'callback',
-                                text = '窓口' + str(db[3][0])
-                            ),
-                            PostbackTemplateAction(
-                                label = str(db[4][3]),
-                                data = 'callback',
-                                text = '窓口' + str(db[4][0])
-                            ),
-                            PostbackTemplateAction(
-                                label = str(db[5][3]),
-                                data = 'callback',
-                                text = '窓口' + str(db[5][0])
-                            ),
-                            PostbackTemplateAction(
-                                label = str(db[6][3]),
-                                data = 'callback',
-                                text = '窓口' + str(db[6][0])
-                            )
-                        ]
+                        )
                     )
                 ]
             )
         )
-        #         layout = 'vertical',
-        #         contents = [
-        #             TextComponent(
-        #                 text = '窓口を選択してください',
-        #                 weight = 'bold',
-        #                 color = '#aaaaaa',
-        #                 size = 'xl'
-        #             )
-        #         ]
-        #     ),
-        #     body = BoxComponent(
-        #         layout = 'vertical',
-        #         contents = [
-        #             ButtonComponent(
-        #                 style = 'link'
-        #                 height = 'sm'
-        #                 actions = [
-        #                     PostbackTemplateAction(
-        #                         label = db[0][3],
-        #                         data = 'callback',
-        #                         text = '窓口' + str(db[0][0])
-        #                     ),
-        #                     PostbackTemplateAction(
-        #                         label = db[0][3],
-        #                         data = 'callback',
-        #                         text = '窓口' + str(db[1][0])
-        #                     ),
-        #                     PostbackTemplateAction(
-        #                         label = db[0][3],
-        #                         data = 'callback',
-        #                         text = '窓口' + str(db[2][0])
-        #                     ),
-        #                     PostbackTemplateAction(
-        #                         label = db[0][3],
-        #                         data = 'callback',
-        #                         text = '窓口' + str(db[3][0])
-        #                     ),
-        #                     PostbackTemplateAction(
-        #                         label = db[0][3],
-        #                         data = 'callback',
-        #                         text = '窓口' + str(db[4][0])
-        #                     ),
-        #                     PostbackTemplateAction(
-        #                         label = db[0][3],
-        #                         data = 'callback',
-        #                         text = '窓口' + str(db[5][0])
-        #                     ),
-        #                     PostbackTemplateAction(
-        #                         label = db[0][3],
-        #                         data = 'callback',
-        #                         text = '窓口' + str(db[6][0])
-        #                     )
-        #                 ]
-        #             )
-        #         ]
-        #     )
-        # )
 
         # payload = {
         #     "type": "bubble",
