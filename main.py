@@ -41,6 +41,7 @@ def split_list(l, n):
     for idx in range(0, len(l), n):
         yield l[idx:idx + n]
 
+# 窓口一覧表示 (テキスト)
 def window_list(db):
     db.append(
         (1,1,1,
@@ -61,6 +62,7 @@ def window_list(db):
     result += "・見つからない場合はこちら"
     return result
 
+# 窓口一覧表示 (フレックスボックス)
 def window_list_flex(db):
     db.append(
         (1,1,1,
@@ -71,7 +73,55 @@ def window_list_flex(db):
         '月～金\n9:00～12:00\n13:00～16:00\n(祝日、年末年始を除く)',
         0,'2021-12-10 02:37:02.388856')
         )
-    db_column = list(split_list(db, 7))
+    db_column = list(split_list(db, 10))
+
+    contents_carousel = []
+    contents_button = []
+    for dbcol in db_column:
+        for row in dbcol:
+            contents_button.append(
+                ButtonComponent(
+                    style = 'link',
+                    height = 'sm',
+                    action = PostbackAction(
+                        label = str(row[3])[:40],
+                        data = 'callback',
+                        text = '窓口ID:' + str(row[0])
+                    )
+                )
+            )
+        contents_carousel.append(
+            CarouselContainer(
+                contents = [
+                    BubbleContainer(
+                        header = BoxComponent(
+                            layout = 'vertical',
+                            contents = [ 
+                                TextComponent(
+                                    text = '窓口を選択してください',
+                                    weight = 'bold',
+                                    color = '#333333',
+                                    size = 'xl'
+                                )
+                            ]
+                        ),
+                        body = BoxComponent(
+                            layout = 'vertical',
+                            contents = contents_button
+                        )
+                    )
+                ]
+            )
+        )
+
+# 窓口の情報を出力
+def window_info(db):
+    result = "お探しの窓口はこちらですか？\n"\
+        + db[0][3] + "\n"\
+        + db[0][5] + "\n"\
+        + db[0][6] + "\n"\
+        + db[0][7]
+    return result
 
 # ブラウザでherokuにアクセスした場合の処理
 @app.route("/")
@@ -96,15 +146,6 @@ def callback():
         abort(400)
 
     return 'OK'
-
-# 窓口の情報を出力
-def window_info(db):
-    result = "お探しの窓口はこちらですか？\n"\
-        + db[0][3] + "\n"\
-        + db[0][5] + "\n"\
-        + db[0][6] + "\n"\
-        + db[0][7]
-    return result
 
 # データベースの表の出力
 @app.route("/database")
@@ -873,11 +914,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 22 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
+        result = window_list_flex(db)
         
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['障がい者']:
         with psycopg2.connect(DATABASE_URL) as conn:
