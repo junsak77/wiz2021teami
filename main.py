@@ -687,7 +687,7 @@ def handle_message(event):
             direction='ltr',
             hero=ImageComponent(
                 url='https://mag.sendenkaigi.com/brain/201403/images/116_01.jpg',
-                action=URIAction(uri='https://ja.wikipedia.org/wiki/笑い男 (攻殻機動隊)')
+                action=URIAction(uri='https://ja.wikipedia.org/wiki/笑い男%20(攻殻機動隊)')
             )
         )
         #     header = BoxComponent(
