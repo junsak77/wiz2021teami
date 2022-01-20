@@ -76,8 +76,8 @@ def window_list_flex(db):
     db_column = list(split_list(db, 10))
 
     contents_carousel = []
-    contents_button = []
     for dbcol in db_column:
+        contents_button = []
         for row in dbcol:
             contents_button.append(
                 ButtonComponent(
@@ -643,263 +643,6 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 21 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        # result = CarouselContainer(
-        #     contents = [
-        #         BubbleContainer(
-        #             header = BoxComponent(
-        #                 layout = 'vertical',
-        #                 contents = [ 
-        #                     TextComponent(
-        #                         text = '窓口を選択してください',
-        #                         weight = 'bold',
-        #                         color = '#333333',
-        #                         size = 'xl'
-        #                     )
-        #                 ]
-        #             ),
-        #             body = BoxComponent(
-        #                 layout = 'vertical',
-        #                 contents = [ 
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[0][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[0][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[1][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[1][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[2][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[2][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[3][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[3][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[4][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[4][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[5][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[5][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[6][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[6][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[7][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[7][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[8][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[8][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[9][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[9][0])
-        #                         )
-        #                     )
-        #                 ]
-        #             )
-        #         ),
-        #         BubbleContainer(
-        #             header = BoxComponent(
-        #                 layout = 'vertical',
-        #                 contents = [ 
-        #                     TextComponent(
-        #                         text = '窓口を選択してください',
-        #                         weight = 'bold',
-        #                         color = '#333333',
-        #                         size = 'xl'
-        #                     )
-        #                 ]
-        #             ),
-        #             body = BoxComponent(
-        #                 layout = 'vertical',
-        #                 contents = [ 
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[10][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[10][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[11][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[11][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[12][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[12][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[13][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[13][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[14][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[14][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[15][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[15][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[16][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[16][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[17][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[17][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[18][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[18][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[19][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[19][0])
-        #                         )
-        #                     )
-        #                 ]
-        #             )
-        #         ),
-        #         BubbleContainer(
-        #             header = BoxComponent(
-        #                 layout = 'vertical',
-        #                 contents = [ 
-        #                     TextComponent(
-        #                         text = '窓口を選択してください',
-        #                         weight = 'bold',
-        #                         color = '#333333',
-        #                         size = 'xl'
-        #                     )
-        #                 ]
-        #             ),
-        #             body = BoxComponent(
-        #                 layout = 'vertical',
-        #                 contents = [ 
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[0][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[20][0])
-        #                         )
-        #                     ),
-        #                     ButtonComponent(
-        #                         style = 'link',
-        #                         height = 'sm',
-        #                         action = PostbackAction(
-        #                             label = str(db[1][3])[:40],
-        #                             data = 'callback',
-        #                             text = '窓口' + str(db[21][0])
-        #                         )
-        #                     )
-        #                 ]
-        #             )
-        #         )
-
-        #     ]
-        # )
         result = window_list_flex(db)
 
         line_bot_api.reply_message(
@@ -926,11 +669,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 23 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['精神']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -938,11 +682,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 24 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
     
     elif content in ['女性']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -950,11 +695,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 25 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['健康・生活']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -962,11 +708,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 26 ORDER BY Id ASC")
                 db = curs.fetchall()
         
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['原発']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -974,11 +721,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 31 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['生活']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -986,11 +734,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 32 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['企業・経営']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -998,11 +747,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 33 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['復興支援']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1010,11 +760,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 34 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['事故']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1022,11 +773,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 41 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['生活・人間関係']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1034,11 +786,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 42 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['食品・安全']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1046,11 +799,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 43 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['その他']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1058,11 +812,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 44 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['環境問題']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1070,11 +825,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 51 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['公害・廃棄物']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1082,11 +838,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 52 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['環境保全活動']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1094,11 +851,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 53 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['労働環境']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1106,11 +864,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 71 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['経営']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1118,11 +877,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 72 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['農林水産業']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1130,11 +890,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 731 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['テクノロジー']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1142,11 +903,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 732 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['安全相談']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1154,11 +916,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 81 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['交通安全']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1166,23 +929,24 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 82 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
-
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
     elif content in ['いじめ・子ども相談']:
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as curs:
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 83 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['犯罪関連']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1190,11 +954,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 84 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['パスポート']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1202,11 +967,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 91 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['外国人向け相談窓口']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1214,11 +980,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 101 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['教育相談']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1226,11 +993,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 111 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['視覚障がい']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1238,11 +1006,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 1121 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['聴覚障がい']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1250,11 +1019,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 1122 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['肢体不自由']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1262,11 +1032,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 1123 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['病弱障がい']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1274,11 +1045,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 1124 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['知的障がい']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1286,11 +1058,12 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 1125 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['LD・ADHD等']:
         with psycopg2.connect(DATABASE_URL) as conn:
@@ -1298,23 +1071,24 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 1126 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
-
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
     elif content in ['調査・文化財']:
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as curs:
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 113 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = window_list(db)
-        
+        result = window_list_flex(db)
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result))
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
     elif content in ['県政相談']:
         with psycopg2.connect(DATABASE_URL) as conn:
