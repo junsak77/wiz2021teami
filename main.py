@@ -97,16 +97,13 @@ def callback():
 
     return 'OK'
 
+# 窓口の情報を出力
 def window_info(db):
-    db_column = list(split_list(db, 3,5,7,8))
-    for dbcol in db_column:
-        for row in dbcol:
-            result = "お探しの窓口はこちらですか？\n"
-            result = "\n"
-            result = row[3] + "\n"
-            result = row[5] + "\n"
-            result = row[6] + "\n"
-            result = row[7] 
+    result = "お探しの窓口はこちらですか？\n"\
+        + db[0][3] + "\n"\
+        + db[0][5] + "\n"\
+        + db[0][6] + "\n"\
+        + db[0][7]
     return result
 
 # データベースの表の出力
