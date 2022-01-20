@@ -10,7 +10,7 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     CarouselColumn, CarouselTemplate, 
-    BubbleContainer, BoxComponent, TextComponent, ButtonComponent, MessageAction,
+    BubbleContainer, CarouselContainer, BoxComponent, TextComponent, ButtonComponent, MessageAction,
     FollowEvent, MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, FlexSendMessage,
     PostbackAction, PostbackTemplateAction
 )
@@ -595,116 +595,118 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 21 ORDER BY Id ASC")
                 db = curs.fetchall()
 
-        result = [
-            BubbleContainer(
-                header = BoxComponent(
-                    layout = 'vertical',
-                    contents = [ 
-                        TextComponent(
-                            text = '窓口を選択してください',
-                            weight = 'bold',
-                            color = '#333333',
-                            size = 'xl'
-                        )
-                    ]
-                ),
-                body = BoxComponent(
-                    layout = 'vertical',
-                    contents = [ 
-                        ButtonComponent(
-                            style = 'link',
-                            height = 'sm',
-                            action = PostbackAction(
-                                label = str(db[0][3])[:40],
-                                data = 'callback',
-                                text = '窓口' + str(db[0][0])
+        result = CarouselContainer(
+            contents = [
+                BubbleContainer(
+                    header = BoxComponent(
+                        layout = 'vertical',
+                        contents = [ 
+                            TextComponent(
+                                text = '窓口を選択してください',
+                                weight = 'bold',
+                                color = '#333333',
+                                size = 'xl'
                             )
-                        ),
-                        ButtonComponent(
-                            style = 'link',
-                            height = 'sm',
-                            action = PostbackAction(
-                                label = str(db[1][3])[:40],
-                                data = 'callback',
-                                text = '窓口' + str(db[1][0])
+                        ]
+                    ),
+                    body = BoxComponent(
+                        layout = 'vertical',
+                        contents = [ 
+                            ButtonComponent(
+                                style = 'link',
+                                height = 'sm',
+                                action = PostbackAction(
+                                    label = str(db[0][3])[:40],
+                                    data = 'callback',
+                                    text = '窓口' + str(db[0][0])
+                                )
+                            ),
+                            ButtonComponent(
+                                style = 'link',
+                                height = 'sm',
+                                action = PostbackAction(
+                                    label = str(db[1][3])[:40],
+                                    data = 'callback',
+                                    text = '窓口' + str(db[1][0])
+                                )
+                            ),
+                            ButtonComponent(
+                                style = 'link',
+                                height = 'sm',
+                                action = PostbackAction(
+                                    label = str(db[2][3])[:40],
+                                    data = 'callback',
+                                    text = '窓口' + str(db[2][0])
+                                )
+                            ),
+                            ButtonComponent(
+                                style = 'link',
+                                height = 'sm',
+                                action = PostbackAction(
+                                    label = str(db[3][3])[:40],
+                                    data = 'callback',
+                                    text = '窓口' + str(db[3][0])
+                                )
+                            ),
+                            ButtonComponent(
+                                style = 'link',
+                                height = 'sm',
+                                action = PostbackAction(
+                                    label = str(db[4][3])[:40],
+                                    data = 'callback',
+                                    text = '窓口' + str(db[4][0])
+                                )
+                            ),
+                            ButtonComponent(
+                                style = 'link',
+                                height = 'sm',
+                                action = PostbackAction(
+                                    label = str(db[5][3])[:40],
+                                    data = 'callback',
+                                    text = '窓口' + str(db[5][0])
+                                )
+                            ),
+                            ButtonComponent(
+                                style = 'link',
+                                height = 'sm',
+                                action = PostbackAction(
+                                    label = str(db[6][3])[:40],
+                                    data = 'callback',
+                                    text = '窓口' + str(db[6][0])
+                                )
+                            ),
+                            ButtonComponent(
+                                style = 'link',
+                                height = 'sm',
+                                action = PostbackAction(
+                                    label = str(db[7][3])[:40],
+                                    data = 'callback',
+                                    text = '窓口' + str(db[7][0])
+                                )
+                            ),
+                            ButtonComponent(
+                                style = 'link',
+                                height = 'sm',
+                                action = PostbackAction(
+                                    label = str(db[8][3])[:40],
+                                    data = 'callback',
+                                    text = '窓口' + str(db[8][0])
+                                )
+                            ),
+                            ButtonComponent(
+                                style = 'link',
+                                height = 'sm',
+                                action = PostbackAction(
+                                    label = str(db[9][3])[:40],
+                                    data = 'callback',
+                                    text = '窓口' + str(db[9][0])
+                                )
                             )
-                        ),
-                        ButtonComponent(
-                            style = 'link',
-                            height = 'sm',
-                            action = PostbackAction(
-                                label = str(db[2][3])[:40],
-                                data = 'callback',
-                                text = '窓口' + str(db[2][0])
-                            )
-                        ),
-                        ButtonComponent(
-                            style = 'link',
-                            height = 'sm',
-                            action = PostbackAction(
-                                label = str(db[3][3])[:40],
-                                data = 'callback',
-                                text = '窓口' + str(db[3][0])
-                            )
-                        ),
-                        ButtonComponent(
-                            style = 'link',
-                            height = 'sm',
-                            action = PostbackAction(
-                                label = str(db[4][3])[:40],
-                                data = 'callback',
-                                text = '窓口' + str(db[4][0])
-                            )
-                        ),
-                        ButtonComponent(
-                            style = 'link',
-                            height = 'sm',
-                            action = PostbackAction(
-                                label = str(db[5][3])[:40],
-                                data = 'callback',
-                                text = '窓口' + str(db[5][0])
-                            )
-                        ),
-                        ButtonComponent(
-                            style = 'link',
-                            height = 'sm',
-                            action = PostbackAction(
-                                label = str(db[6][3])[:40],
-                                data = 'callback',
-                                text = '窓口' + str(db[6][0])
-                            )
-                        ),
-                        ButtonComponent(
-                            style = 'link',
-                            height = 'sm',
-                            action = PostbackAction(
-                                label = str(db[7][3])[:40],
-                                data = 'callback',
-                                text = '窓口' + str(db[7][0])
-                            )
-                        ),
-                        ButtonComponent(
-                            style = 'link',
-                            height = 'sm',
-                            action = PostbackAction(
-                                label = str(db[8][3])[:40],
-                                data = 'callback',
-                                text = '窓口' + str(db[8][0])
-                            )
-                        ),
-                        ButtonComponent(
-                            style = 'link',
-                            height = 'sm',
-                            action = PostbackAction(
-                                label = str(db[9][3])[:40],
-                                data = 'callback',
-                                text = '窓口' + str(db[9][0])
-                            )
-                        )
-                    ]
+                        ]
+                    )
                 )
-            )
-        ]
+            ]
+        )
 
         line_bot_api.reply_message(
             event.reply_token,
