@@ -182,7 +182,7 @@ def handle_follow(event):
         event.reply_token,
         TextSendMessage(text=profile.display_name + "さん、はじめまして！\n" +
         "友だち追加ありがとうございます。ナビふくくん(仮)です。\n" +
-        "まずは窓口の分野を選択するか、キーワードを入力してください。")
+        "お探しの窓口をご案内しますので、まずは「カテゴリ一覧」をタップしてください。")
     )
 
 # メッセージイベントの場合の処理
@@ -1122,12 +1122,20 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=result))
 
+    # 「最初から」がタップされた場合の処理
+    elif content in ['最初から']:
+        response = "改めて窓口を探す時には、もう一度「カテゴリ選択」をタップしてください。"
 
-    # 受け取った文字列をそのまま返す                              
-    else:
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=content)) 
+            TextSendMessage(text=response)) 
+
+    # その他              
+    else:
+        response = "ごめんなさい。メッセージを処理できませんでした。"
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=response)) 
 
 if __name__ == "__main__":
 #    app.run()
