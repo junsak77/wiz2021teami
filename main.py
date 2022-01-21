@@ -10,7 +10,7 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     CarouselColumn, CarouselTemplate, 
-    BubbleContainer, CarouselContainer, BoxComponent, TextComponent, ButtonComponent, MessageAction,
+    BubbleContainer, CarouselContainer, BoxComponent, TextComponent, ButtonComponent,
     FollowEvent, MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, FlexSendMessage,
     PostbackAction, PostbackTemplateAction
 )
@@ -25,14 +25,7 @@ DATABASE_URL = os.environ.get('DATABASE_URL')
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-# 窓口リストを表示する関数
 # Pythonでは呼び出す行より上に記述しないとエラーになる
-# def window_list(db):
-    # result = "窓口一覧\n"
-    # for row in db: 
-    #     result += "・" + row[3] + "\n"
-    # result += "・見つからない場合はこちら"
-    # return result
 
 # リストをn個ずつのサブリストに分割する
 # l : リスト
@@ -41,7 +34,7 @@ def split_list(l, n):
     for idx in range(0, len(l), n):
         yield l[idx:idx + n]
 
-# 窓口一覧表示 (テキスト)
+# 窓口リストを表示する関数 (テキスト)
 def window_list(db):
     db.append(
         (1,1,1,
@@ -62,7 +55,7 @@ def window_list(db):
     result += "・見つからない場合はこちら"
     return result
 
-# 窓口一覧表示 (フレックスボックス)
+# 窓口リストを表示する関数
 def window_list_flex(db):
     db.append(
         (1,1,1,
@@ -114,8 +107,7 @@ def window_list_flex(db):
 
 # 窓口の情報を出力
 def window_info(db):
-    result = "お探しの窓口はこちらですか？\n"\
-        + db[0][3] + "\n"\
+    result = db[0][4] + "\n"\
         + db[0][5] + "\n"\
         + db[0][6] + "\n"\
         + db[0][7]
@@ -160,7 +152,7 @@ def database():
               <th>Soudan_name</th>\
               <th>Soudan_content</th>\
               <th>Window_name</th>\
-              <th>tel</th>\
+              <th>Tel</th>\
               <th>Business_hours</th>\
               <th>Subcategory</th>\
               <th>Timestamp</th>\
@@ -504,7 +496,7 @@ def handle_message(event):
             TemplateSendMessage(alt_text='carousel template', template=message_template)
         )
     
-    elif content in ['パスポート関係・外国人向け']:
+    elif content in ['パスポート・外国人関連']:
         carousel_columns = [
             CarouselColumn(
                 text = '分野を選択してください',
@@ -549,83 +541,6 @@ def handle_message(event):
                         label = '調査・文化財',
                         data = 'callback',
                         text = '調査・文化財'
-                    )
-                ]
-            )
-        ]
-        message_template = CarouselTemplate(columns=carousel_columns)
-        line_bot_api.reply_message(
-            event.reply_token,
-            TemplateSendMessage(alt_text='carousel template', template=message_template)
-        )
-
-    elif content in ['産業']:
-        carousel_columns = [
-            CarouselColumn(
-                text = '分野を選択してください',
-                title = '分野選択',
-                actions = [
-                    PostbackTemplateAction(
-                        label = '農林水産業',
-                        data = 'callback',
-                        text = '農林水産業'
-                    ),
-                    PostbackTemplateAction(
-                        label = 'テクノロジー',
-                        data = 'callback',
-                        text = 'テクノロジー'
-                    ),
-                    
-                ]
-            )
-        ]
-        message_template = CarouselTemplate(columns=carousel_columns)
-        line_bot_api.reply_message(
-            event.reply_token,
-            TemplateSendMessage(alt_text='carousel template', template=message_template)
-        )
-
-    elif content in ['障がい児関連']:
-        carousel_columns = [
-            CarouselColumn(
-                text = '分野を選択してください',
-                title = '分野選択',
-                actions = [
-                    PostbackTemplateAction(
-                        label = '視覚障がい',
-                        data = 'callback',
-                        text = '視覚障がい'
-                    ),
-                    PostbackTemplateAction(
-                        label = '聴覚障がい',
-                        data = 'callback',
-                        text = '聴覚障がい'
-                    ),
-                    PostbackTemplateAction(
-                        label = '肢体不自由',
-                        data = 'callback',
-                        text = '肢体不自由'
-                    )
-                ]
-            ),
-            CarouselColumn(
-                text = '分野を選択してください',
-                title = '分野選択',
-                actions = [
-                    PostbackTemplateAction(
-                        label = '病弱障がい',
-                        data = 'callback',
-                        text = '病弱障がい'
-                    ),
-                    PostbackTemplateAction(
-                        label = '知的障がい',
-                        data = 'callback',
-                        text = '知的障がい'
-                    ),
-                    PostbackTemplateAction(
-                        label = 'LD・ADHD等',
-                        data = 'callback',
-                        text = 'LD・ADHD等'
                     )
                 ]
             )
@@ -935,6 +850,7 @@ def handle_message(event):
             event.reply_token,
             FlexSendMessage(alt_text='flex template', contents=result)
         )
+
     elif content in ['いじめ・子ども相談']:
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as curs:
@@ -988,6 +904,7 @@ def handle_message(event):
         )
 
     elif content in ['教育相談']:
+
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as curs:
                 curs.execute("SELECT * FROM window_list WHERE subcategory = 111 ORDER BY Id ASC")
@@ -999,7 +916,87 @@ def handle_message(event):
             event.reply_token,
             FlexSendMessage(alt_text='flex template', contents=result)
         )
+    
+    # 以下 下位分類のあるサブカテゴリ
+    elif content in ['産業']:
+        carousel_columns = [
+            CarouselColumn(
+                text = '分野を選択してください',
+                title = '分野選択',
+                actions = [
+                    PostbackTemplateAction(
+                        label = '農林水産業',
+                        data = 'callback',
+                        text = '農林水産業'
+                    ),
+                    PostbackTemplateAction(
+                        label = 'テクノロジー',
+                        data = 'callback',
+                        text = 'テクノロジー'
+                    ),
+                    
+                ]
+            )
+        ]
+        message_template = CarouselTemplate(columns=carousel_columns)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TemplateSendMessage(alt_text='carousel template', template=message_template)
+        )
 
+    elif content in ['障がい児関連']:
+
+        carousel_columns = [
+            CarouselColumn(
+                text = '分野を選択してください',
+                title = '分野選択',
+                actions = [
+                    PostbackTemplateAction(
+                        label = '視覚障がい',
+                        data = 'callback',
+                        text = '視覚障がい'
+                    ),
+                    PostbackTemplateAction(
+                        label = '聴覚障がい',
+                        data = 'callback',
+                        text = '聴覚障がい'
+                    ),
+                    PostbackTemplateAction(
+                        label = '肢体不自由',
+                        data = 'callback',
+                        text = '肢体不自由'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                text = '分野を選択してください',
+                title = '分野選択',
+                actions = [
+                    PostbackTemplateAction(
+                        label = '病弱障がい',
+                        data = 'callback',
+                        text = '病弱障がい'
+                    ),
+                    PostbackTemplateAction(
+                        label = '知的障がい',
+                        data = 'callback',
+                        text = '知的障がい'
+                    ),
+                    PostbackTemplateAction(
+                        label = 'LD・ADHD等',
+                        data = 'callback',
+                        text = 'LD・ADHD等'
+                    )
+                ]
+            )
+        ]
+        message_template = CarouselTemplate(columns=carousel_columns)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TemplateSendMessage(alt_text='carousel template', template=message_template)
+        )
+
+    # 以下 下位分類
     elif content in ['視覚障がい']:
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as curs:
@@ -1077,6 +1074,7 @@ def handle_message(event):
             event.reply_token,
             FlexSendMessage(alt_text='flex template', contents=result)
         )
+
     elif content in ['調査・文化財']:
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as curs:
@@ -1090,23 +1088,46 @@ def handle_message(event):
             FlexSendMessage(alt_text='flex template', contents=result)
         )
 
+    # 県政相談
     elif content in ['県政相談']:
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as curs:
                 curs.execute("SELECT * FROM window_list WHERE Id = 1")
                 db = curs.fetchall()
 
-        result = window_info(db)
+        result = "お探しの窓口はこちらですか？\n\n" + window_info(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+    
+    # 指定の窓口の情報を表示
+    elif content[:5] in ['窓口ID:']:
+        window_id = content[5:]
+
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE Id = " + str(window_id))
+                db = curs.fetchall()
+
+        # 見つからなかった場合の処理
+        if window_id in ['1']:
+            result = "見つからなかった場合はこちらからご相談ください。\n\n"
+        else:
+            result = "お探しの窓口はこちらですか？\n\n"
+
+        result += window_info(db)
         
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=result))
 
-                                                                 
+
+    # 受け取った文字列をそのまま返す                              
     else:
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=content)) # 受け取った文字列をそのまま返す
+            TextSendMessage(text=content)) 
 
 if __name__ == "__main__":
 #    app.run()
