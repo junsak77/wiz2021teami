@@ -107,8 +107,7 @@ def window_list_flex(db):
 
 # 窓口の情報を出力
 def window_info(db):
-    result = "お探しの窓口はこちらですか？\n"\
-        + db[0][3] + "\n"\
+    result = db[0][3] + "\n"\
         + db[0][5] + "\n"\
         + db[0][6] + "\n"\
         + db[0][7]
@@ -1096,11 +1095,33 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE Id = 1")
                 db = curs.fetchall()
 
-        result = window_info(db)
+        result = "お探しの窓口はこちらですか？\n" + window_info(db)
         
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=result))
+    
+    # 指定の窓口の情報を表示
+    elif content[:5] in ['窓口ID:']:
+        window_id = content[5:]
+
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM window_list WHERE " + str(window_id) + " = 1")
+                db = curs.fetchall()
+
+        # 見つからなかった場合の処理
+        if window_id == 1:
+            result = "見つからなかった場合はこちらからご相談ください。\n"
+        else:
+            result = "お探しの窓口はこちらですか？\n"
+
+        result += window_info(db)
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+
 
     # 受け取った文字列をそのまま返す                              
     else:
