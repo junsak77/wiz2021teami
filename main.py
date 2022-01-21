@@ -1111,7 +1111,7 @@ def handle_message(event):
                 db = curs.fetchall()
 
         # 見つからなかった場合の処理
-        if window_id[5:] == 1:
+        if window_id[5:] in ['1']:
             result = "見つからなかった場合はこちらからご相談ください。\n\n"
         else:
             result = "お探しの窓口はこちらですか？\n\n"
