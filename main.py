@@ -34,27 +34,6 @@ def split_list(l, n):
     for idx in range(0, len(l), n):
         yield l[idx:idx + n]
 
-# 窓口リストを表示する関数 (テキスト)
-def window_list(db):
-    db.append(
-        (1,1,1,
-        '見つからない場合はこちら',
-        '県の総合的な相談窓口',
-        '県庁県政相談コーナー',
-        '0120-899-721\nkenseisoudan@pref.fukushima.lg.jp',
-        '月～金\n9:00～12:00\n13:00～16:00\n(祝日、年末年始を除く)',
-        0,'2021-12-10 02:37:02.388856')
-        )
-    db_column = list(split_list(db, 7))
-    
-    result = "窓口一覧\n"
-    for dbcol in db_column:
-        for row in dbcol:
-            result += "・" + row[3] + "\n"
-        result += "----------\n"
-    result += "・見つからない場合はこちら"
-    return result
-
 # 窓口リストを表示する関数
 def window_list_flex(db):
     db.append(
@@ -482,7 +461,7 @@ def handle_message(event):
                         data = 'callback',
                         text = 'いじめ・子ども相談'
                     ),
-                     PostbackTemplateAction(
+                    PostbackTemplateAction(
                         label = '犯罪関連',
                         data = 'callback',
                         text = '犯罪関連'
@@ -1124,7 +1103,7 @@ def handle_message(event):
 
     # 「最初から」がタップされた場合の処理
     elif content in ['最初から']:
-        response = "改めて窓口を探す時には、もう一度「カテゴリ選択」をタップしてください。"
+        response = "改めて窓口を探す際には、もう一度「カテゴリ選択」をタップしてください。"
 
         line_bot_api.reply_message(
             event.reply_token,
