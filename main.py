@@ -1095,7 +1095,7 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE Id = 1")
                 db = curs.fetchall()
 
-        result = "お探しの窓口はこちらですか？\n" + window_info(db)
+        result = "お探しの窓口はこちらですか？\n\n" + window_info(db)
         
         line_bot_api.reply_message(
             event.reply_token,
@@ -1111,10 +1111,10 @@ def handle_message(event):
                 db = curs.fetchall()
 
         # 見つからなかった場合の処理
-        if window_id == 1:
-            result = "見つからなかった場合はこちらからご相談ください。\n"
+        if window_id[5:] == 1:
+            result = "見つからなかった場合はこちらからご相談ください。\n\n"
         else:
-            result = "お探しの窓口はこちらですか？\n"
+            result = "お探しの窓口はこちらですか？\n\n"
 
         result += window_info(db)
         
