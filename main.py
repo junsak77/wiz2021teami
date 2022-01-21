@@ -496,7 +496,7 @@ def handle_message(event):
             TemplateSendMessage(alt_text='carousel template', template=message_template)
         )
     
-    elif content in ['パスポート関係・外国人向け']:
+    elif content in ['パスポート・外国人関連']:
         carousel_columns = [
             CarouselColumn(
                 text = '分野を選択してください',
