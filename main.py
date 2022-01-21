@@ -1107,7 +1107,7 @@ def handle_message(event):
 
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as curs:
-                curs.execute("SELECT * FROM window_list WHERE = " + str(window_id))
+                curs.execute("SELECT * FROM window_list WHERE Id = " + str(window_id))
                 db = curs.fetchall()
 
         # 見つからなかった場合の処理
