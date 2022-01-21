@@ -107,7 +107,7 @@ def window_list_flex(db):
 
 # 窓口の情報を出力
 def window_info(db):
-    result = db[0][3] + "\n"\
+    result = db[0][4] + "\n"\
         + db[0][5] + "\n"\
         + db[0][6] + "\n"\
         + db[0][7]
@@ -1107,7 +1107,7 @@ def handle_message(event):
 
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as curs:
-                curs.execute("SELECT * FROM window_list WHERE " + str(window_id) + " = 1")
+                curs.execute("SELECT * FROM window_list WHERE = " + str(window_id))
                 db = curs.fetchall()
 
         # 見つからなかった場合の処理
