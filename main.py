@@ -1153,8 +1153,8 @@ def handle_message(event):
     
     # 「役に立った」「役に立たなかった」へのレスポンス
     elif content in ['役に立った', '役に立たなかった']:
-        response = "回答ありがとうございました！\n"\
-            + "もう一度利用する場合はボタンを押してください。"
+        response = "回答ありがとうございました！\n" +\
+            "もう一度利用する場合はボタンを押してください。"
 
         button = ButtonsTemplate(
             text = 'もう一度利用する',
