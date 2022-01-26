@@ -1076,9 +1076,30 @@ def handle_message(event):
 
         result = "お探しの窓口はこちらですか？\n\n" + window_info(db)
         
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=result))
+        review = "よかったら、今回の会話が役に立ったか教えてください！"
+
+        review_qa = ButtonsTemplate(
+            text = '今回の会話は',
+            actions = [
+                PostbackTemplateAction(
+                    label = '役に立った',
+                    data = 'callback',
+                    text = '役に立った'
+                ),
+                PostbackTemplateAction(
+                    label = '役に立たなかった',
+                    data = 'callback',
+                    text = '役に立たなかった'
+                )
+            ]
+        )
+
+        messages = [
+            TextSendMessage(text=result),
+            TextSendMessage(text=review),
+            TemplateSendMessage(alt_text='carousel template', template=review_qa)
+            ]
+        line_bot_api.reply_message(event.reply_token, messages)
     
     # 指定の窓口の情報を表示
     elif content[:5] in ['窓口ID:']:
@@ -1120,9 +1141,7 @@ def handle_message(event):
             TextSendMessage(text=review),
             TemplateSendMessage(alt_text='carousel template', template=review_qa)
             ]
-        
-        line_bot_api.reply_message(
-            event.reply_token, messages)
+        line_bot_api.reply_message(event.reply_token, messages)
 
     # 「最初から」がタップされた場合の処理
     elif content in ['最初から']:
@@ -1131,6 +1150,25 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=response)) 
+    
+    # 「役に立った」「役に立たなかった」へのレスポンス
+    elif content in ['役に立った', '役に立たなかった']:
+        response = "回答ありがとうございました！\n"\
+            + "もう一度利用する場合はボタンを押してください。"
+
+        button = ButtonsTemplate(
+            text = 'もう一度利用する',
+            actions = [
+                PostbackTemplateAction(
+                    label = 'カテゴリ選択へ',
+                    data = 'callback',
+                    text = 'カテゴリ選択'
+                )
+            ]
+        )
+
+        messages = [response, button]
+        line_bot_api.reply_message(event.reply_token, messages)
 
     # その他              
     else:
