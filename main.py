@@ -1120,7 +1120,7 @@ def handle_message(event):
         messages = [
             TextSendMessage(text=result),
             TextSendMessage(text=review),
-            TemplateSendMessage(alt_text='carousel template', message=review_qa)
+            TemplateSendMessage(alt_text='carousel template', template=review_qa)
             ]
         
         line_bot_api.reply_message(
