@@ -1167,7 +1167,10 @@ def handle_message(event):
             ]
         )
 
-        messages = [response, button]
+        messages = [
+            TextSendMessage(text=response),
+            TemplateSendMessage(alt_text='carousel template', template=button)
+            ]
         line_bot_api.reply_message(event.reply_token, messages)
 
     # その他              
