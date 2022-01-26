@@ -1113,7 +1113,7 @@ def handle_message(event):
                             label = '役に立たなかった',
                             data = 'callback',
                             text = '役に立たなかった'
-                        ),  
+                        )
                     ]
                 )
             ]
