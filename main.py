@@ -1096,10 +1096,35 @@ def handle_message(event):
             result = "お探しの窓口はこちらですか？\n\n"
 
         result += window_info(db)
+
+        review = "よかったら、今回の会話が役に立ったか教えてください！"
+
+        review_qa = [
+            CarouselColumn(
+                title = '今回の会話は',
+                actions = [
+                    PostbackTemplateAction(
+                        label = '役に立った',
+                        data = 'callback',
+                        text = '役に立った'
+                    ),
+                    PostbackTemplateAction(
+                        label = '役に立たなかった',
+                        data = 'callback',
+                        text = '役に立たなかった'
+                    ),  
+                ]
+            )
+        ]
+
+        messages = [
+            TextSendMessage(text=result),
+            TextSendMessage(text=review),
+            TemplateSendMessage(alt_text='carousel template', message=review_qa)
+            ]
         
         line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=result))
+            event.reply_token, messages)
 
     # 「最初から」がタップされた場合の処理
     elif content in ['最初から']:
