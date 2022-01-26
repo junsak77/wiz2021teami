@@ -1099,23 +1099,25 @@ def handle_message(event):
 
         review = "よかったら、今回の会話が役に立ったか教えてください！"
 
-        review_qa = [
-            CarouselColumn(
-                title = '今回の会話は',
-                actions = [
-                    PostbackTemplateAction(
-                        label = '役に立った',
-                        data = 'callback',
-                        text = '役に立った'
-                    ),
-                    PostbackTemplateAction(
-                        label = '役に立たなかった',
-                        data = 'callback',
-                        text = '役に立たなかった'
-                    ),  
-                ]
-            )
-        ]
+        review_qa = CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    title = '今回の会話は',
+                    actions = [
+                        PostbackTemplateAction(
+                            label = '役に立った',
+                            data = 'callback',
+                            text = '役に立った'
+                        ),
+                        PostbackTemplateAction(
+                            label = '役に立たなかった',
+                            data = 'callback',
+                            text = '役に立たなかった'
+                        ),  
+                    ]
+                )
+            ]
+        )
 
         messages = [
             TextSendMessage(text=result),
