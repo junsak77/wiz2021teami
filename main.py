@@ -160,7 +160,7 @@ def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=profile.display_name + "さん、はじめまして！\n" +
-        "友だち追加ありがとうございます。ナビふくくん(仮)です。\n" +
+        "友だち追加ありがとうございます。ナビふくくんです。\n" +
         "お探しの窓口をご案内しますので、まずは「カテゴリ一覧」をタップしてください。")
     )
 
