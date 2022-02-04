@@ -15,3 +15,4 @@ https://www.pref.fukushima.lg.jp/sec/01010e/koucho6-002.html
 - Heroku
 - PostgreSQL
 - LINE Messaging API
+- Adobe Illustrator (LINEリッチメニューの画像作成)
