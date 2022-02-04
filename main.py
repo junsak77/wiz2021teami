@@ -1110,6 +1110,29 @@ def handle_message(event):
                 curs.execute("SELECT * FROM window_list WHERE Id = " + str(window_id))
                 db = curs.fetchall()
 
+        # 「窓口ID:999」など、存在しない窓口IDを入力された場合の処理
+        if len(db) == 0:
+            response = "存在しない窓口IDが入力されました。\n" +\
+            "もう一度利用する場合はボタンを押してください。"
+
+            button = ButtonsTemplate(
+                text = 'もう一度利用する',
+                actions = [
+                    PostbackTemplateAction(
+                        label = 'カテゴリ選択へ',
+                        data = 'callback',
+                        text = 'カテゴリ選択'
+                    )
+                ]
+            )
+
+            messages = [
+                TextSendMessage(text=response),
+                TemplateSendMessage(alt_text='carousel template', template=button)
+                ]
+            line_bot_api.reply_message(event.reply_token, messages)
+
+
         # 見つからなかった場合の処理
         if window_id in ['1']:
             result = "見つからなかった場合はこちらからご相談ください。\n\n"
